@@ -1,0 +1,9 @@
+---
+- hosts: all
+
+  vars:
+    beanstalkd_listen_address: 127.0.0.1
+    beanstalkd_listen_port: 11300
+
+  roles:
+    - role_under_test
