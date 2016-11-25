@@ -20,6 +20,12 @@
     group: root
     mode: 0644
 
+- name: Check if Beanstalkd is running
+  command: systemctl status beanstalkd
+  ignore_errors: yes
+  changed_when: false
+  register: service_beanstalkd_status
+
 - name: Add Beanstalkd service file.
   template:
     src: "beanstalkd.service.j2"
@@ -31,6 +37,7 @@
 - name: Reload systemd
   command: systemctl daemon-reload
   sudo: yes
+  when: service_beanstalkd_status | failed
 
 - name: Ensure Beanstalkd has selected state and enabled on boot.
   service: name=beanstalkd state=restarted enabled=yes
