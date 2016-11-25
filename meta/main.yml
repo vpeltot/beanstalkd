@@ -10,7 +10,6 @@ galaxy_info:
     - 7
   - name: Debian
     versions:
-    - wheezy
     - jessie
 
   galaxy_tags:
