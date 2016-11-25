@@ -1,0 +1,36 @@
+---
+
+- name: Ensure Beanstalkd is installed on Debian OS Family.
+  apt:
+    name: "beanstalkd"
+    state: "installed"
+  when: (ansible_os_family == 'Debian')
+
+- name: Ensure Beanstalkd is installed on RedHat OS Family.
+  package:
+    name: "beanstalkd"
+    state: "installed"
+  when: (ansible_os_family == 'RedHat')
+
+- name: Add Beanstalkd configuration file.
+  template:
+    src: "beanstalkd.j2"
+    dest: "/etc/default/beanstalkd"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Add Beanstalkd service file.
+  template:
+    src: "beanstalkd.service.j2"
+    dest: "/etc/systemd/system/beanstalkd.service"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Reload systemd
+  command: systemctl daemon-reload
+  sudo: yes
+
+- name: Ensure Beanstalkd has selected state and enabled on boot.
+  service: name=beanstalkd state=restarted enabled=yes

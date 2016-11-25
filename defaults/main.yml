@@ -1,0 +1,28 @@
+---
+
+beanstalkd_listen_address: 127.0.0.1
+beanstalkd_listen_port: 11300
+
+## -b DIR   wal directory
+#beanstalkd_option_wal_directory:
+#
+## -f MS    fsync at most once every MS milliseconds (use -f0 for "always fsync")
+#beanstalkd_option_fsync:
+#
+## -F       never fsync (default)
+#beanstalkd_option_never_fsync:
+#
+## -u USER  become user and group
+#beanstalkd_option_user:
+#
+## -z BYTES set the maximum job size in bytes (default is 65535)
+#beanstalkd_option_job_size:
+#
+## -s BYTES set the size of each wal file (default is 10485760) (will be rounded up to a multiple of 512 bytes)
+#beanstalkd_option_wal_size:
+#
+## -c compact the binlog (default)
+#beanstalkd_option_compact_binlog: "-c"
+#
+## -n       do not compact the binlog
+#beanstalkd_option_not_compact_binlog:
